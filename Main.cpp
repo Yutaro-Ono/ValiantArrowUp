@@ -16,31 +16,15 @@ Map map;
 Anim anim;
 Debug debug;
 
-// 配列用定数
-const int shotNum = 5;
-const int enemyAllNum = 24;
-const int itemAllNum = 15;
-const int scoreItemNum = 10;
+// 配列の要素数
+const int shotNum = 5;			// ショットの最大数
+const int enemyAllNum = 24;		// エネミーの最大数
+const int itemAllNum = 15;		// 回復アイテムの最大数
+const int scoreItemNum = 10;	// スコアアイテムの最大数
 
 Shot shot[shotNum];
 Enemy enemy[enemyAllNum];
 Item item[itemAllNum];
-
-// ランチャー(Launcher.exe)呼び出し関数 
-// pathにはLauncher.exeへの相対パスへの文字列を入れる
-void runLauncher(const char* path)
-{
-	char fullPathexe[512];
-#pragma warning (disable:4996)
-	sprintf(fullPathexe, "%s%s", path, "Launcher.exe");
-
-	// プロセス起動準備
-	PROCESS_INFORMATION pi = { 0 };
-	STARTUPINFO si = { 0 };
-	si.cb = sizeof(STARTUPINFO);
-
-	CreateProcess(fullPathexe, (LPSTR)"", NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, path, &si, &pi);
-}
 
 //-------------------------------------------------------------------------------------------------//
 //										WinMain関数
@@ -291,9 +275,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	DxLib_End();
-
-	// Dxlib_endとreturn 0の間に下記関数呼び出しを追加します。
-	runLauncher("../../");
 
 	return 0;
 }

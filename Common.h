@@ -35,17 +35,6 @@
 // デバッグ
 #include "Debug.h"
 
-//class Anim;
-//class Camera;
-//class Map;
-//class Collision;
-//class Boss;
-//class Shot;
-//class Effect;
-//class UI;
-//class Player;
-//class Boss;
-
 // 画面サイズ
 #define SCREEN_W 1920
 #define SCREEN_H 1080

@@ -5,20 +5,23 @@ class Effect;
 class Shot
 {
 public:
-	// 弾の座標
+	// 弾のx,y座標
 	float x;
 	float y;
-	// プレーヤーに位置を合わせるためのターゲティング変数
+
+	// プレーヤーにx,y座標の追跡用変数
 	float adjustX;
 	float adjustY;
-	// 弾のサイズ
+
+	// 弾のサイズ(w = 幅, h = 高さ)
 	int w;
 	int h;
 
-	// 加速度
+	// x,y方向加速度
 	float velocityX;
 	float velocityY;
 
+	// 速度の倍率
 	float speedMultipl;
 
 	float arc;

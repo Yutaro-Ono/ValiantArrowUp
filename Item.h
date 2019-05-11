@@ -7,8 +7,9 @@ class Shot;
 
 class Item
 {
-	public:
+public:
 
+	// ç¿ïW
 	float posX;
 	float posY;
 
@@ -46,6 +47,7 @@ class Item
 	int animTimer;
 	int animCounter;
 
+	// ä÷êî
 	void InitItem(int i);
 	void SetPos(int i);
 	void hitPlayer(Player * player);

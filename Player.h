@@ -11,24 +11,26 @@ class UI;
 class Enemy;
 class Boss;
 
+//------------------------------------------------------------------//
+// プレーヤークラス
+//-----------------------------------------------------------------//
+// リファクタリング中...
 class Player
 {
 public:
 
-	float		  x;						// x座標
-	float		  y;						// y座標
-	float velocityY;					// Y軸の速度
+	float				x;						// x座標(プレーヤー)
+	float				y;						// y座標(プレーヤー)
+
+	float		velocityY;						// Y軸の速度(ジャンプ時)
 
 	int a;
 
 	// 体力関連
-	int            hp;
-	int            hpHUD;		                    // 体力HUD画像格納
+	int            hp;							// 体力(プレーヤー)
 
 
     int move = 0;
-
-
 
 	 // 発射モード
 	int selectShot;			            // 射撃モード選択( 0:通常射撃	1:三本射撃	3:貫通射撃 )
@@ -40,7 +42,7 @@ public:
 	int		adjustY;
 
 	//--------------------------------------------------------------------//
-	// アニメーション・画像関連
+	// 画像関連
 	//-------------------------------------------------------------------//
 	// プレーヤーの画像ハンドル
 	int		standGraph;			// プレーヤーの立ち画像格納
@@ -51,6 +53,8 @@ public:
 	int		chargeGraph2;		// プレーヤーの矢発射画像格納(矢をつがえる)
 	int		chargeGraph3;		// 矢を引き絞る(溜め状態最終)
 	int		chargeGraph4;		// 矢の発射
+
+	int            hpHUD;						// プレーヤーの体力表示ウィンドウ
 	// x座標のオフセット
 	float   posOffset;
 	// アニメーション用フレームカウンター
@@ -84,32 +88,34 @@ public:
 	int     footstepSound;
 	int     chargeSound1;
 	int     chargeSound2;
+
 	//------------------------------------------------------------------//
 	// フラグ関連
 	//-----------------------------------------------------------------//
-	// 移動用フラグ
+	// 移動
 	bool	rightMoveFlg;			// 右移動ボタン押下時に立つフラグ
 	bool	leftMoveFlg;			// 左移動ボタン押下時に立つフラグ
-	// ジャンプフラグ
+	// ジャンプ
 	bool	jumpFlg;				// ジャンプボタン押下時に立つフラグ
 	bool	jumpPushButton;			// ジャンプボタン長押し時にジャンプし続けないようにするためのフラグ
-	// 落下フラグ
+	// 落下・重力
 	bool	fallFlg;
-	// ダメージフラグ
+	// ダメージ
 	bool	damageFlg;				// プレーヤーがエネミーに当たってダメージを受ける際に立つフラグ
 	int		damageCount;			// 被ダメージ時の無敵カウント
 	bool	damageFlyFlg;			// 被ダメージ時ふっとんでいるかどうか
 	float	damageFlyX;				// 被ダメージ時ふっとび横
 	float	damageFlyY;				// 被ダメージ時ふっとび縦
-	// 当たり判定用フラグ
+	// 当たり判定
 	bool	hitTopFlg;				// ブロック上の当たり判定フラグ
 	bool	hitUnderFlg;			// ブロック下の当たり判定フラグ
 	bool	hitLeftFlg;				// ブロック左の当たり判定フラグ
 	bool	hitRightFlg;			// ブロック右の当たり判定フラグ
-	// 描画用フラグ
+	// 描画
 	int		dirFlg;					// 横の方向( 0 = 右, 1 = 左 )
 	bool	stopFlg;				// スクロール時のストップフラグ
 	bool	moveFlg;				// 当たり判定に使う移動している or していない フラグ
+
 
 	// 関数群
 	void	Init();					// 初期化用関数
