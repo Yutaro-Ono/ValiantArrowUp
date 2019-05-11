@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\Player">
+      <UniqueIdentifier>{0e61ce06-2012-45ff-a884-4d6d0b692e02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Enemy">
+      <UniqueIdentifier>{f5fedab3-b0d4-4e5d-8868-db98fba2856f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Shot">
+      <UniqueIdentifier>{6472067a-82fd-4756-ab91-77ff35dfe500}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Map">
+      <UniqueIdentifier>{9c0f9b15-4a19-444d-aba1-7de02d6df98a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Player">
+      <UniqueIdentifier>{18ff26e6-a3c8-40b4-a632-151b76e12e3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Enemy">
+      <UniqueIdentifier>{07f8ee4b-2572-43a6-ab56-291ef207df88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Map">
+      <UniqueIdentifier>{afc6b82a-2a0c-4d0e-b704-608ad7c4354a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Shot">
+      <UniqueIdentifier>{29558696-b07c-4a9b-9bdc-fbba77df6c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{b5fc23a4-9f96-426b-8e1f-9f4a1a338eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Camera">
+      <UniqueIdentifier>{37ff8735-4c84-4625-8ce0-d623dfb9a345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Camera">
+      <UniqueIdentifier>{dd0b8d39-ac95-4d48-9651-473973ccf2e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Collision">
+      <UniqueIdentifier>{4a7336f4-b5f4-4b91-8b01-b1372b5452e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Collision">
+      <UniqueIdentifier>{36d859e2-0f0f-480d-84f4-c1a7e1c9e2e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Animation">
+      <UniqueIdentifier>{d6b6c5e5-b363-4ec0-b569-4e5ab832a300}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Animation">
+      <UniqueIdentifier>{f3a5cea4-c3f8-446b-a100-ba0ad91a344a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Img">
+      <UniqueIdentifier>{f5347591-9340-42de-b18e-bbdbe230897a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Img">
+      <UniqueIdentifier>{10e82d5c-fe8a-4215-a862-ecf030fae4d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Interface">
+      <UniqueIdentifier>{2a73fe57-9925-47bb-939b-8d0cfcb26933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Interface">
+      <UniqueIdentifier>{a7974d2d-a015-4bce-b67b-bbef09186cb4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Shot.cpp">
+      <Filter>ソース ファイル\Shot</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="BgImage.cpp">
+      <Filter>ソース ファイル\Img</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>ソース ファイル\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimCounter.cpp">
+      <Filter>ソース ファイル\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionActor.cpp">
+      <Filter>ソース ファイル\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyLegion.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>ソース ファイル\Img</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBoss.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotManager.cpp">
+      <Filter>ソース ファイル\Shot</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>ソース ファイル\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>ソース ファイル\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>ソース ファイル\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Shot.h">
+      <Filter>ヘッダー ファイル\Shot</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>ヘッダー ファイル\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="BgImage.h">
+      <Filter>ヘッダー ファイル\Img</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>ヘッダー ファイル\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimCounter.h">
+      <Filter>ヘッダー ファイル\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionActor.h">
+      <Filter>ヘッダー ファイル\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyLegion.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>ヘッダー ファイル\Img</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBoss.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotManager.h">
+      <Filter>ヘッダー ファイル\Shot</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>ヘッダー ファイル\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>ヘッダー ファイル\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>ヘッダー ファイル\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>ヘッダー ファイル\Map</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

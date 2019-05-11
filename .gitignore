@@ -1,0 +1,6 @@
+.vs/
+*.psd
+*.user
+*.log
+Debug/
+Log.txt
