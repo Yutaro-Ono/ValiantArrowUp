@@ -19,21 +19,24 @@ void Player::Init()
 	chargeSound1 = LoadSoundMem("data/Sound/SE/Player/PLAYER_CHARGE_2.mp3");
 	chargeSound2 = LoadSoundMem("data/Sound/SE/Player/PLAYER_CHARGE.mp3");
 
-	// プレイヤー座標の初期化
+	// 座標の初期化
 	x = 512.0f;
 	y = 890.0f;
 
-	// 重力
-	velocityY = 9.0f;
-
-	hp = PLAYER_MAX_LIFE;
-
-	// ジャンプ
-	jumpPow = -16.0f;
-
+	// 初期座標を記録
 	posOffset = x;
 
-	// 弓関係
+	// 重力の初期化
+	velocityY = 9.0f;
+
+	// 体力値を最大に設定
+	hp = PLAYER_MAX_LIFE;
+
+	// ジャンプのパワーを設定
+	jumpPow = -16.0f;
+
+
+	// 射撃関連の初期化
 	shotFlg = false;
 	shotInterval = 0;
 
@@ -66,8 +69,9 @@ void Player::Init()
 	hitLeftFlg = false;
 	hitRightFlg = false;
 
-	// 向きフラグ
+	// プレイヤーの左右向き
 	dirFlg = 0;
+
 	stopFlg = false;
 	moveFlg = false;
 }
