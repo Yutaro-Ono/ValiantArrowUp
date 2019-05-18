@@ -7,7 +7,6 @@ CollisionActor collA;
 Player player;
 Boss boss;
 Legion legion;
-//Shot shot;
 Bg bg;
 Effect effect;
 Sound sound;
@@ -25,22 +24,6 @@ const int scoreItemNum = 10;
 Shot shot[shotNum];
 Enemy enemy[enemyAllNum];
 Item item[itemAllNum];
-
-// ランチャー(Launcher.exe)呼び出し関数 
-// pathにはLauncher.exeへの相対パスへの文字列を入れる
-void runLauncher(const char* path)
-{
-	char fullPathexe[512];
-#pragma warning (disable:4996)
-	sprintf(fullPathexe, "%s%s", path, "Launcher.exe");
-
-	// プロセス起動準備
-	PROCESS_INFORMATION pi = { 0 };
-	STARTUPINFO si = { 0 };
-	si.cb = sizeof(STARTUPINFO);
-
-	CreateProcess(fullPathexe, (LPSTR)"", NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, path, &si, &pi);
-}
 
 //-------------------------------------------------------------------------------------------------//
 //										WinMain関数
@@ -170,7 +153,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				player.MoveLeftX();
 				player.JumpAction();
 				player.Damage();
-				player.Sound();
 
 				// エネミー関連処理
 				for (int i = 0; i < enemyAllNum; i++)
@@ -291,9 +273,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	DxLib_End();
-
-	// Dxlib_endとreturn 0の間に下記関数呼び出しを追加します。
-	runLauncher("../../");
 
 	return 0;
 }

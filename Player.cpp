@@ -19,13 +19,12 @@ void Player::Init()
 	chargeSound1 = LoadSoundMem("data/Sound/SE/Player/PLAYER_CHARGE_2.mp3");
 	chargeSound2 = LoadSoundMem("data/Sound/SE/Player/PLAYER_CHARGE.mp3");
 
-	// 座標の初期化
+	// プレイヤー座標の初期化
 	x = 512.0f;
 	y = 890.0f;
+
 	// 重力
 	velocityY = 9.0f;
-
-	a = 0;
 
 	hp = PLAYER_MAX_LIFE;
 
@@ -33,9 +32,6 @@ void Player::Init()
 	jumpPow = -16.0f;
 
 	posOffset = x;
-
-	// 発射モード
-	selectShot = 0;
 
 	// 弓関係
 	shotFlg = false;
@@ -414,29 +410,6 @@ void Player::HitBlockRight(Map *map, Camera *camera, Collision *coll)
 	if (hitRightFlg)
 	{
 		x += PLAYER_SPEED;
-	}
-}
-
-//--------------------------------------------------//
-// 発射モード変更処理
-//-------------------------------------------------//
-void Player::Change()
-{
-	// 発射モード変更
-	if (CheckHitKey(KEY_INPUT_N))
-	{
-		if (selectShot == 0)
-		{
-			selectShot = 1;
-		}
-		if (selectShot == 1)
-		{
-			selectShot = 2;
-		}
-		if (selectShot == 3)
-		{
-			selectShot = 0;
-		}
 	}
 }
 

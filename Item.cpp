@@ -6,7 +6,7 @@ void Item::InitItem(int i)
 	if (i < 5)
 	{
 		type = TYPE_CURE;
-		LoadDivGraph("data/textures/Item/Cure/CURE_ITEM.png", 5, 5, 1, 64, 64, cureItem);
+		LoadDivGraph("Data/textures/Item/Cure/CURE_ITEM.png", 5, 5, 1, 64, 64, cureItem);
         LoadDivGraph("Data/Textures/Item/Cure/CURE_EFFECT.png", 6, 3, 2, 64, 64, cureEffect);
 		cureSound = LoadSoundMem("Data/Sound/SE/Item/AID_GET.mp3");
 	}
@@ -15,7 +15,7 @@ void Item::InitItem(int i)
 	if (i >= 5)
 	{
 		type = TYPE_SCORE;
-		LoadDivGraph("data/textures/Item/Score/SCORE_ITEM.png", 5, 5, 1, 64, 64, scoreItem);
+		LoadDivGraph("Data/textures/Item/Score/SCORE_ITEM.png", 5, 5, 1, 64, 64, scoreItem);
 		explSound = LoadSoundMem("Data/Sound/SE/Item/EXPLOSION_BALL.mp3");
 	}
 

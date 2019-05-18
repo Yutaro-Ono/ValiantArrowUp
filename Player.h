@@ -18,9 +18,9 @@ public:
 	//--------------------------------------------------------------------//
 	// 座標関連
 	//-------------------------------------------------------------------//
-	float			x;						// x座標
-	float			y;						// y座標
-	float			velocityY;				// Y軸の速度
+    float           x;		                  // x座標
+    float           y;		                  // y座標
+    float           velocity;                 // y軸の速度
 	// x座標のオフセット
 	float			posOffset;
 
@@ -40,11 +40,7 @@ public:
 	// 射撃関連
 	int				shotInterval;			// ショット毎の間隔(インターバル)
 	int				chargeCount;			// チャージ段階のカウント
-	bool			shotFlg;				// ショットボタンを押下した時に立つ
-	bool			chargeFlg;				// チャージに移行したときに立つ
-	bool			chargeLv0;
-	bool			chargeLv1;				// チャージ1段階目
-	bool			chargeLv2;				// チャージ2段階目
+
 
 	//--------------------------------------------------------------------//
 	// アニメーション・画像関連
@@ -80,6 +76,12 @@ public:
 	// ジャンプアクション用
 	bool			jumpFlg;				// ジャンプボタン押下時に立つフラグ
 	bool			jumpPushButton;			// ジャンプボタン長押し時にジャンプし続けないようにするためのフラグ
+	// 射撃用
+	bool			shotFlg;				// ショットボタンを押下した時に立つ
+	bool			chargeFlg;				// チャージに移行したときに立つ
+	bool			chargeLv0;
+	bool			chargeLv1;				// チャージ1段階目
+	bool			chargeLv2;				// チャージ2段階目
 	// 落下状態の判別
 	bool			fallFlg;
 	// 被ダメージ時用
