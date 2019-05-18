@@ -42,8 +42,8 @@ public:
     int             chargeCount;              // チャージ段階のカウント
     
     //---------------------------------------------------------------------//
-	// 被ダメージ時の動作
-	//--------------------------------------------------------------------//
+    // 被ダメージ時の動作
+    //--------------------------------------------------------------------//
 	int             damageCount;			// 被ダメージ時の無敵カウント
 	float			damageFlyX;				// 被ダメージ時ふっとび横
 	float			damageFlyY;				// 被ダメージ時ふっとび縦
@@ -120,6 +120,5 @@ public:
     void    HitBlockLeft(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック左辺)
     void    HitBlockRight(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック右辺)
     void    Draw(Camera *camera, Shot *shot, Anim *anim);									// 描画
-    void    DrawHealth(UI *ui, Camera *camera);												// HPの表示(UI)
 
 };

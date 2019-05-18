@@ -340,14 +340,6 @@ void Player::Damage()
 		{
 			damageFlg = false;
 		}
-
-		//// カウント開始
-		//damageCount++;
-		//// 一定時間後に無敵解除
-		//if (damageCount > 120)
-		//{
-		//	damageFlg = false;
-		//}
 	}
 }
 
@@ -450,10 +442,4 @@ void Player::Draw(Camera *camera, Shot *shot, Anim *anim)
 
 	//// 体力表示(仮)
 	//DrawFormatString(camera->GetScreenX(x - PLAYER_W / 2), camera->GetScreenY(y - PLAYER_H * 2), GetColor(255, 0, 0), "HP:%d", hp);
-}
-
-void Player::DrawHealth(UI * ui, Camera *camera)
-{
-	//DrawGraph(640, 5, hpHUD, TRUE);
-	//DrawBox(724, 33, 1196, 148, GetColor(255, 0, 0), TRUE);
 }
