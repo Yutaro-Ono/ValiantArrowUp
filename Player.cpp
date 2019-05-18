@@ -5,20 +5,16 @@
 //-----------------------------------------------//
 void Player::Init()
 {
+	// 画像ファイル(.png)のロード
 	hpHUD = LoadGraph("Data/Interface/HUD/HUD_HP_BAR_2.png");
-	standGraph = LoadGraph("data/textures/actors/player/player_stand.png");
+	idleGraph = LoadGraph("data/textures/actors/player/player_stand.png");
 	LoadDivGraph("data/textures/actors/player/player_walk.png", 6, 6, 1, PLAYER_W * 2, PLAYER_H * 2, moveGraph, TRUE);
 	damageGraph = LoadGraph("data/textures/actors/player/player_damage.png");
-	chargeGraph1 = LoadGraph("data/textures/actors/player/player_shot1.png");
-	chargeGraph2 = LoadGraph("data/textures/actors/player/player_shot2.png");
-	chargeGraph3 = LoadGraph("data/textures/actors/player/player_shot3.png");
-	chargeGraph4 = LoadGraph("data/textures/actors/player/player_shot4.png");
-
+	shotBowGraph = LoadGraph("data/textures/actors/player/player_shot4.png");
+	// 音楽ファイル(.mp3)のロード
 	jumpSound = LoadSoundMem("data/Sound/SE/Player/PLAYER_JUMP.mp3");
-	walkSound = LoadSoundMem("data/Sound/SE/Player/PLAYER_WALK.mp3");
 	damageSound = LoadSoundMem("data/Sound/SE/Player/PLAYER_DAMAGE.mp3");
 	footstepSound = LoadSoundMem("data/Sound/SE/Player/PLAYER_FOOTSTEP.mp3");
-	hitWallSound = LoadSoundMem("data/Sound/SE/Collision/WALL_HIT.mp3");
 	shotSound = LoadSoundMem("data/Sound/SE/Shot/ARROW_SHOT.mp3");
 	chargeSound1 = LoadSoundMem("data/Sound/SE/Player/PLAYER_CHARGE_2.mp3");
 	chargeSound2 = LoadSoundMem("data/Sound/SE/Player/PLAYER_CHARGE.mp3");
@@ -444,14 +440,6 @@ void Player::Change()
 	}
 }
 
-void Player::Sound()
-{
-	//if (fallFlg == false && moveFlg == true && !CheckSoundMem(footstepSound))
-	//{
-	//	PlaySoundMem(footstepSound, DX_PLAYTYPE_BACK);
-	//}
-}
-
 //------------------------------------------------//
 // プレーヤーの描画処理
 //-----------------------------------------------//
@@ -462,7 +450,7 @@ void Player::Draw(Camera *camera, Shot *shot, Anim *anim)
 		// 待機時の描画
 		if (!moveFlg && !chargeFlg && !jumpFlg)
 		{
-			DrawRotaGraph(camera->GetScreenX(x), camera->GetScreenY(y), 1.0f, 0, standGraph, TRUE, dirFlg);
+			DrawRotaGraph(camera->GetScreenX(x), camera->GetScreenY(y), 1.0f, 0, idleGraph, TRUE, dirFlg);
 		}
 
 		// 移動時の描画
@@ -479,7 +467,7 @@ void Player::Draw(Camera *camera, Shot *shot, Anim *anim)
 
 		if (chargeFlg)
 		{
-			DrawRotaGraph(camera->GetScreenX(x), camera->GetScreenY(y), 1.0f, 0, chargeGraph4, TRUE, dirFlg);
+			DrawRotaGraph(camera->GetScreenX(x), camera->GetScreenY(y), 1.0f, 0, shotBowGraph, TRUE, dirFlg);
 		}
 	}
 

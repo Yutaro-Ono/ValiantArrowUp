@@ -15,118 +15,106 @@ class Player
 {
 public:
 
-	float		  x;						// x座標
-	float		  y;						// y座標
-	float velocityY;					// Y軸の速度
+	//--------------------------------------------------------------------//
+	// 座標関連
+	//-------------------------------------------------------------------//
+	float			x;						// x座標
+	float			y;						// y座標
+	float			velocityY;				// Y軸の速度
+	// x座標のオフセット
+	float			posOffset;
 
-	int a;
+	//--------------------------------------------------------------------//
+	// ステータス(体力)関連
+	//-------------------------------------------------------------------//
+	int				hp;
+	int				hpHUD;					// 体力HUD画像格納
 
-	// 体力関連
-	int            hp;
-	int            hpHUD;		                    // 体力HUD画像格納
-
-
-    int move = 0;
-
-
-
-	 // 発射モード
-	int selectShot;			            // 射撃モード選択( 0:通常射撃	1:三本射撃	3:貫通射撃 )
-
-	// ジャンプパワー
-	float jumpPow;
-
+	//--------------------------------------------------------------------//
+	// アクション関連(ジャンプ・射撃)
+	//-------------------------------------------------------------------//
+	// ジャンプ処理の際に加わる力
+	float			jumpPow;
 	// 着地時のY軸合わせに用いるカウント変数
-	int		adjustY;
+	int				adjustY;
+	// 射撃関連
+	int				shotInterval;			// ショット毎の間隔(インターバル)
+	int				chargeCount;			// チャージ段階のカウント
+	bool			shotFlg;				// ショットボタンを押下した時に立つ
+	bool			chargeFlg;				// チャージに移行したときに立つ
+	bool			chargeLv0;
+	bool			chargeLv1;				// チャージ1段階目
+	bool			chargeLv2;				// チャージ2段階目
 
 	//--------------------------------------------------------------------//
 	// アニメーション・画像関連
 	//-------------------------------------------------------------------//
 	// プレーヤーの画像ハンドル
-	int		standGraph;			// プレーヤーの立ち画像格納
-	int		moveGraph[6];		// プレーヤーの移動アニメ格納
-	int		jumpGraph;			// プレーヤーのジャンプ画像格納
-	int		damageGraph;		// プレーヤーのダメージ時画像格納
-	int		chargeGraph1;		// プレーヤーの矢発射画像格納(矢を取り出す)
-	int		chargeGraph2;		// プレーヤーの矢発射画像格納(矢をつがえる)
-	int		chargeGraph3;		// 矢を引き絞る(溜め状態最終)
-	int		chargeGraph4;		// 矢の発射
-	// x座標のオフセット
-	float   posOffset;
+	int				idleGraph;				// 待機状態の画像
+	int				moveGraph[6];			// 移動状態の画像(アニメーション)
+	int				jumpGraph;				// ジャンプ時に表示する画像
+	int				damageGraph;			// 被ダメージ時に表示する画像
+	int				shotBowGraph;			// 矢の溜め～発射時用の画像
 	// アニメーション用フレームカウンター
-	int		moveCount;
+	int				moveCount;
 
-	// 弓関係
-	bool	shotFlg;				// ショットボタンを押下した時に立つ
-	int		shotInterval;			// ショット毎の間隔(インターバル)
-	int		chargeCount;			// チャージ段階のカウント
-	bool	chargeFlg;				// チャージに移行したときに立つ
-	bool	chargeLv0;
-	bool	chargeLv1;				// チャージ1段階目
-	bool	chargeLv2;				// チャージ2段階目
 
-	enum ShotMode
-	{
-		standard,
-		triple,
-		penetrait
-	};
 
 	//------------------------------------------------------------------//
-	// SE関連
+	// 効果音(SE)関連
 	//-----------------------------------------------------------------//
-	int     hitWallSound;
-	int     shotSound;
-	int     shotHitSound;
-	int     jumpSound;
-	int     walkSound;
-	int     damageSound;
-	int     footstepSound;
-	int     chargeSound1;
-	int     chargeSound2;
+	int				shotSound;				// 射撃時の効果音
+	int				shotHitSound;			// 矢が敵に当たった時の効果音
+	int				jumpSound;				// ジャンプ時の効果音
+	int				damageSound;			// 被ダメージ時の効果音
+	int				footstepSound;			// 足音(着地時に使用)
+	int				chargeSound1;			// チャージ1段階目の効果音
+	int				chargeSound2;			// チャージ2段階目の効果音
+
 	//------------------------------------------------------------------//
 	// フラグ関連
 	//-----------------------------------------------------------------//
-	// 移動用フラグ
-	bool	rightMoveFlg;			// 右移動ボタン押下時に立つフラグ
-	bool	leftMoveFlg;			// 左移動ボタン押下時に立つフラグ
-	// ジャンプフラグ
-	bool	jumpFlg;				// ジャンプボタン押下時に立つフラグ
-	bool	jumpPushButton;			// ジャンプボタン長押し時にジャンプし続けないようにするためのフラグ
-	// 落下フラグ
-	bool	fallFlg;
-	// ダメージフラグ
-	bool	damageFlg;				// プレーヤーがエネミーに当たってダメージを受ける際に立つフラグ
-	int		damageCount;			// 被ダメージ時の無敵カウント
-	bool	damageFlyFlg;			// 被ダメージ時ふっとんでいるかどうか
-	float	damageFlyX;				// 被ダメージ時ふっとび横
-	float	damageFlyY;				// 被ダメージ時ふっとび縦
-	// 当たり判定用フラグ
-	bool	hitTopFlg;				// ブロック上の当たり判定フラグ
-	bool	hitUnderFlg;			// ブロック下の当たり判定フラグ
-	bool	hitLeftFlg;				// ブロック左の当たり判定フラグ
-	bool	hitRightFlg;			// ブロック右の当たり判定フラグ
-	// 描画用フラグ
-	int		dirFlg;					// 横の方向( 0 = 右, 1 = 左 )
-	bool	stopFlg;				// スクロール時のストップフラグ
-	bool	moveFlg;				// 当たり判定に使う移動している or していない フラグ
+	// 移動用
+	bool			rightMoveFlg;			// 右移動ボタン押下時に立つフラグ
+	bool			leftMoveFlg;			// 左移動ボタン押下時に立つフラグ
+	// ジャンプアクション用
+	bool			jumpFlg;				// ジャンプボタン押下時に立つフラグ
+	bool			jumpPushButton;			// ジャンプボタン長押し時にジャンプし続けないようにするためのフラグ
+	// 落下状態の判別
+	bool			fallFlg;
+	// 被ダメージ時用
+	bool			damageFlg;				// プレーヤーがエネミーに当たってダメージを受ける際に立つフラグ
+	int				damageCount;			// 被ダメージ時の無敵カウント
+	bool			damageFlyFlg;			// 被ダメージ時ふっとんでいるかどうか
+	float			damageFlyX;				// 被ダメージ時ふっとび横
+	float			damageFlyY;				// 被ダメージ時ふっとび縦
+	// 当たり判定用
+	bool			hitTopFlg;				// ブロック上の当たり判定フラグ
+	bool			hitUnderFlg;			// ブロック下の当たり判定フラグ
+	bool			hitLeftFlg;				// ブロック左の当たり判定フラグ
+	bool			hitRightFlg;			// ブロック右の当たり判定フラグ
+	// 描画用
+	int				dirFlg;					// 横の方向( 0 = 右, 1 = 左 )
+	bool			stopFlg;				// スクロール時のストップフラグ
+	bool			moveFlg;				// 当たり判定に使う移動している or していない フラグ
 
-	// 関数群
-	void	Init();					// 初期化用関数
-	void	Control();				// 操作処理(ボタン押下時のフラグ処理)
-	void	ShotProcess(Camera *camera, Anim *anim, Shot *shot, Effect *effect);
-	void	MoveRightX();			// 右移動のフラグが立った時の詳細な右移動処理
-	void	MoveLeftX();			// 左移動のフラグが立った時の詳細な左移動処理
-	void	JumpAction();			
-	void	Gravity();
-	void	Damage();
-	void	HitBlockTop(Map *map, Collision *coll, Camera *camera);
-	void	HitBlockUnder(Map *map, Camera *camera, Collision *coll);
-	void	HitBlockLeft(Map *map, Camera *camera, Collision *coll);
-	void    HitBlockRight(Map *map, Camera *camera, Collision *coll);
-	void	Change();				// 発射モード処理
-	void	Sound();
-	void	Draw(Camera *camera, Shot *shot, Anim *anim);					// 描画
-	void	DrawHealth(UI *ui, Camera *camera);
+	//-----------------------------------------------------------//
+	// 関数
+	//----------------------------------------------------------//
+	void	Init();																			// 初期化用関数
+	void	Control();																		// 操作処理(移動・ジャンプ・射撃ボタンの押下状態を調べる)
+	void	ShotProcess(Camera *camera, Anim *anim, Shot *shot, Effect *effect);			// 
+	void	MoveRightX();																	// 右移動のフラグが立った時の詳細な右移動処理
+	void	MoveLeftX();																	// 左移動のフラグが立った時の詳細な左移動処理
+	void	JumpAction();																	// ジャンプの処理
+	void	Gravity();																		// 重力処理
+	void	Damage();																		// 被ダメージ処理
+	void	HitBlockTop(Map *map, Collision *coll, Camera *camera);							// プレイヤーとマップブロックの当たり判定処理(ブロック上辺)
+	void	HitBlockUnder(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック下辺)
+	void	HitBlockLeft(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック左辺)
+	void    HitBlockRight(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック右辺)
+	void	Change();																		// 発射モード処理
+	void	Draw(Camera *camera, Shot *shot, Anim *anim);									// 描画
+	void	DrawHealth(UI *ui, Camera *camera);												// HPの表示(UI)
 
 };
