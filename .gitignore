@@ -4,3 +4,4 @@
 *.log
 Debug/
 Log.txt
+*.exe

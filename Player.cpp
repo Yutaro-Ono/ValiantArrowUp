@@ -22,22 +22,21 @@ void Player::Init()
 	// 座標の初期化
 	x = 512.0f;
 	y = 890.0f;
-	// 重力
-	velocityY = 9.0f;
 
-	a = 0;
-
-	hp = PLAYER_MAX_LIFE;
-
-	// ジャンプ
-	jumpPow = -16.0f;
-
+	// 初期座標を記録
 	posOffset = x;
 
-	// 発射モード
-	selectShot = 0;
+	// 重力の初期化
+	velocityY = 9.0f;
 
-	// 弓関係
+	// 体力値を最大に設定
+	hp = PLAYER_MAX_LIFE;
+
+	// ジャンプのパワーを設定
+	jumpPow = -16.0f;
+
+
+	// 射撃関連の初期化
 	shotFlg = false;
 	shotInterval = 0;
 
@@ -70,8 +69,9 @@ void Player::Init()
 	hitLeftFlg = false;
 	hitRightFlg = false;
 
-	// 向きフラグ
+	// プレイヤーの左右向き
 	dirFlg = 0;
+
 	stopFlg = false;
 	moveFlg = false;
 }
@@ -340,14 +340,6 @@ void Player::Damage()
 		{
 			damageFlg = false;
 		}
-
-		//// カウント開始
-		//damageCount++;
-		//// 一定時間後に無敵解除
-		//if (damageCount > 120)
-		//{
-		//	damageFlg = false;
-		//}
 	}
 }
 
@@ -417,29 +409,6 @@ void Player::HitBlockRight(Map *map, Camera *camera, Collision *coll)
 	}
 }
 
-//--------------------------------------------------//
-// 発射モード変更処理
-//-------------------------------------------------//
-void Player::Change()
-{
-	// 発射モード変更
-	if (CheckHitKey(KEY_INPUT_N))
-	{
-		if (selectShot == 0)
-		{
-			selectShot = 1;
-		}
-		if (selectShot == 1)
-		{
-			selectShot = 2;
-		}
-		if (selectShot == 3)
-		{
-			selectShot = 0;
-		}
-	}
-}
-
 //------------------------------------------------//
 // プレーヤーの描画処理
 //-----------------------------------------------//
@@ -473,10 +442,4 @@ void Player::Draw(Camera *camera, Shot *shot, Anim *anim)
 
 	//// 体力表示(仮)
 	//DrawFormatString(camera->GetScreenX(x - PLAYER_W / 2), camera->GetScreenY(y - PLAYER_H * 2), GetColor(255, 0, 0), "HP:%d", hp);
-}
-
-void Player::DrawHealth(UI * ui, Camera *camera)
-{
-	//DrawGraph(640, 5, hpHUD, TRUE);
-	//DrawBox(724, 33, 1196, 148, GetColor(255, 0, 0), TRUE);
 }
