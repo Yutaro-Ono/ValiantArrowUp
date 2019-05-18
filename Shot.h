@@ -30,8 +30,6 @@ public:
 
 	// 矢が持つダメージの値
 	int damage;
-	// 矢のチャージ倍率
-	int chargeMag;
 
 
 	// 残弾数、消去フラグ

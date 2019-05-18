@@ -15,6 +15,17 @@ class Player
 {
 public:
 
+	// プレーヤー定数
+    #define PLAYER_SPEED 6
+    #define PLAYER_DAMAGE_FLY_X 5
+    #define PLAYER_DAMAGE_FLY_Y -25
+    #define PLAYER_MAX_LIFE 6
+    #define CHARGE_MAX 3
+    // プレーヤーのサイズ(DrawRotaGraphでの描画のためx,yが画像の中心座標であることに注意する)
+    #define PLAYER_W 32
+    #define PLAYER_H 32
+    #define PLAYER_ANIMATION 6
+
     //--------------------------------------------------------------------//
     // 座標関連
     //-------------------------------------------------------------------//
@@ -40,7 +51,7 @@ public:
     // 射撃関連
     int             shotInterval;             // ショット毎の間隔(インターバル)
     int             chargeCount;              // チャージ段階のカウント
-    
+
     //---------------------------------------------------------------------//
     // 被ダメージ時の動作
     //--------------------------------------------------------------------//
@@ -54,7 +65,7 @@ public:
     //-------------------------------------------------------------------//
     // プレーヤーの画像ハンドル
     int             idleGraph;                // 待機状態の画像
-    int             moveGraph[6];             // 移動状態の画像(アニメーション)
+    int             moveGraph[PLAYER_ANIMATION];             // 移動状態の画像(アニメーション)
     int             jumpGraph;                // ジャンプ時に表示する画像
     int             damageGraph;              // 被ダメージ時に表示する画像
     int             shotBowGraph;             // 矢の溜め～発射時用の画像
@@ -86,9 +97,7 @@ public:
     // 射撃用
     bool            shotFlg;				// ショットボタンを押下した時に立つ
     bool            chargeFlg;				// チャージに移行したときに立つ
-    bool            chargeLv0;
-    bool            chargeLv1;				// チャージ1段階目
-    bool            chargeLv2;				// チャージ2段階目
+	bool            chargeLv[3];			// チャージ段階
     // 落下状態の判別
     bool            fallFlg;
     // 被ダメージ時用
@@ -110,15 +119,15 @@ public:
     void    Init();																			// 初期化用関数
     void    Control();																		// 操作処理(移動・ジャンプ・射撃ボタンの押下状態を調べる)
     void    ShotProcess(Camera *camera, Anim *anim, Shot *shot, Effect *effect);			// 
-    void    MoveRightX();																	// 右移動のフラグが立った時の詳細な右移動処理
-    void    MoveLeftX();																	// 左移動のフラグが立った時の詳細な左移動処理
-    void    JumpAction();																	// ジャンプの処理
-    void    Gravity();																		// 重力処理
+    void    MoveRightPlayer();																	// 右移動のフラグが立った時の詳細な右移動処理
+    void    MoveLeftPlayer();																	// 左移動のフラグが立った時の詳細な左移動処理
+    void    JumpPlayer();																	// ジャンプの処理
+    void    GravityProcess();																		// 重力処理
     void    Damage();																		// 被ダメージ処理
-    void    HitBlockTop(Map *map, Collision *coll, Camera *camera);							// プレイヤーとマップブロックの当たり判定処理(ブロック上辺)
-    void    HitBlockUnder(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック下辺)
-    void    HitBlockLeft(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック左辺)
-    void    HitBlockRight(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック右辺)
+    void    CheckHitBlockTop(Map *map, Collision *coll, Camera *camera);							// プレイヤーとマップブロックの当たり判定処理(ブロック上辺)
+    void    CheckHitBlockUnder(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック下辺)
+    void    CheckHitBlockLeft(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック左辺)
+    void    CheckHitBlockRight(Map *map, Camera *camera, Collision *coll);						// プレイヤーとマップブロックの当たり判定処理(ブロック右辺)
     void    Draw(Camera *camera, Shot *shot, Anim *anim);									// 描画
 
 };

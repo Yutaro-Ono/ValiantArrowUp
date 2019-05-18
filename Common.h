@@ -53,15 +53,7 @@
 // 重力設定
 #define GRAVITY_ALL 13 
 
-// プレーヤー定数
-#define PLAYER_SPEED 6
-#define PLAYER_DAMAGE_FLY_X 5
-#define PLAYER_DAMAGE_FLY_Y -25
-#define PLAYER_MAX_LIFE 6
-#define CHARGE_MAX 3
-// プレーヤーのサイズ(DrawRotaGraphでの描画のためx,yが画像の中心座標であることに注意する)
-#define PLAYER_W 32
-#define PLAYER_H 32
+
 
 // エネミー定数
 #define ENEMY_SPEED 2
@@ -80,14 +72,18 @@
 #define ENEMY_H 32
 
 // アイテム定数
-#define ITEM_W 64
-#define ITEM_H 64
+#define ITEM_W 64            // アイテムの横幅サイズ
+#define ITEM_H 64            // アイテムの縦幅サイズ
+#define ITEM_CURE_DIV 5      // 回復アイテムのアニメーション分割数
+#define ITEM_SCORE_DIV 5     // スコアアイテムのアニメーション分割数
+
 
 // ショット定数
 #define SHOT_W 32
 #define SHOT_H 3
 #define SHOT 3
 #define SHOT_SPEED 20
+#define SHOT_MAGNIFICATION 3
 #define SHOT_ARC 1		// 弧を描くための上方向加速度
 #define SHOT_INTERVAL 5
 #define SHOT_REMAIN 15

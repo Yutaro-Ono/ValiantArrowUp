@@ -14,13 +14,11 @@ void Camera::MovePosCam(Player *player)
 	if (player->x + PLAYER_W > SCREEN_W / 2 + camOffsetX && player->x > 960.0f)
 	{
 		tagOffsetX = player->x + PLAYER_SPEED - (SCREEN_W / 2);
-		player->stopFlg = true;
 	}
 
 	if (player->y + PLAYER_W > SCREEN_H / 2 + camOffsetY && player->y < 540 && player->y > 400)
 	{
 		tagOffsetY = player->y + GRAVITY_ALL - (SCREEN_H / 2);
-		player->stopFlg = true;
 	}
 
 	camOffsetX = tagOffsetX;

@@ -42,9 +42,15 @@ void Player::Init()
 
 	chargeFlg = false;
 	chargeCount = 0;
-	chargeLv0 = false;
-	chargeLv1 = false;
-	chargeLv2 = false;
+
+	for (int i = 0; i < 3; i++)
+	{
+		chargeLv[i] = 0;
+	}
+
+	//chargeLv0 = false;
+	//chargeLv1 = false;
+	//chargeLv2 = false;
 
 	// 着地時Y軸調整カウント用
 	adjustY = 0;
@@ -72,16 +78,16 @@ void Player::Init()
 	// プレイヤーの左右向き
 	dirFlg = 0;
 
-	stopFlg = false;
 	moveFlg = false;
 }
 
 //------------------------------------------------//
-// プレーヤーの操作処理
+// プレーヤーの操作処理(ボタンの押下状態を認識)
 //-----------------------------------------------//
 void Player::Control()
 {
 	// 右移動
+	// 
 	if (CheckHitKey(KEY_INPUT_RIGHT))
 	{
 		dirFlg = 0;
@@ -114,7 +120,8 @@ void Player::Control()
 	}
 
 	// ジャンプ時処理
-	if (CheckHitKey(KEY_INPUT_SPACE) && !jumpFlg && !chargeFlg && !hitUnderFlg && !fallFlg && !jumpPushButton)
+	// (ジャンプ中じゃない・チャージ中じゃない・落下状態じゃない・ジャンプボタンが押されていない)
+	if (CheckHitKey(KEY_INPUT_SPACE) && !jumpFlg && !chargeFlg && !fallFlg && !jumpPushButton)
 	{
 		jumpFlg = true;
 		// ジャンプ効果音
@@ -122,8 +129,9 @@ void Player::Control()
 		{
 			PlaySoundMem(jumpSound, DX_PLAYTYPE_BACK);
 		}
-		jumpPushButton = true;
 		velocityY = jumpPow;
+		jumpPushButton = true;
+
 	}
 	// ボタンを離したらジャンプボタンを押し続けているかどうかのフラグをオフ
 	if (CheckHitKey(KEY_INPUT_SPACE) == 0 && jumpPushButton)
@@ -140,7 +148,7 @@ void Player::Control()
 		// チャージ状態の遷移
 		if (chargeCount < 30)
 		{
-			chargeLv0 = true;
+			chargeLv[0] = true;
 		}
 		// チャージの段階処理
 		if (chargeCount >= 30)
@@ -149,8 +157,9 @@ void Player::Control()
 			{
 				PlaySoundMem(chargeSound1, DX_PLAYTYPE_BACK);
 			}
-			chargeLv0 = false;
-			chargeLv1 = true;
+
+			chargeLv[0] = false;
+			chargeLv[1] = true;
 		}
 		if (chargeCount >= 60)
 		{
@@ -158,11 +167,12 @@ void Player::Control()
 			{
 				PlaySoundMem(chargeSound2, DX_PLAYTYPE_BACK);
 			}
-			chargeLv1 = false;
-			chargeLv2 = true;
-		}
 
+			chargeLv[1] = false;
+			chargeLv[2] = true;
+		}
 	}
+
 	// ショットのインターバル処理
 	if (shotFlg == true)
 	{
@@ -175,36 +185,46 @@ void Player::Control()
 
 }
 
+//-------------------------------------------------------------------------------------------//
 // 射撃処理
+//------------------------------------------------------------------------------------------//
 void Player::ShotProcess(Camera *camera, Anim *anim, Shot *shot, Effect *effect)
 {
 	// ショットボタンが離されたら発射し、初期化
 	if (chargeFlg && !CheckHitKey(KEY_INPUT_B))
 	{
-
+		//----------------------------------------//
 		// 発射前に速度とダメージを格納
-		if (chargeLv0)
+		//---------------------------------------//
+		// チャージ0段目
+		// ダメージ：1, 弾速：x0.5
+		if (chargeLv[0])     // チャージ1段目
 		{
 			shot->damage = 1;
 			shot->speedMultipl = 0.5f;
-			shot->chargeMag = 3;
-			shot->velocityY = shot->arc * shot->chargeMag;
+			//shot->chargeMag = 3;
+			shot->velocityY = SHOT_MAGNIFICATION;
 		}
-		if (chargeLv1)
+		// チャージ1段目
+		// ダメージ：3, 弾速：x1.0
+		if (chargeLv[1])     // チャージ2段目
 		{
 			shot->damage = 3;
 			shot->speedMultipl = 1.0f;
-			shot->chargeMag = 3;
-			shot->velocityY = shot->arc * shot->chargeMag;
+			//shot->chargeMag = 3;
+			shot->velocityY = shot->arc * SHOT_MAGNIFICATION;
 		}
-		if (chargeLv2)
+		// チャージ2段目
+		// ダメージ：5, 弾速：1.5f
+		if (chargeLv[2])     // チャージ3段目
 		{
 			shot->damage = 5;
 			shot->speedMultipl = 1.5f;
-			shot->chargeMag = 3;
-			shot->velocityY = shot->arc * shot->chargeMag;
+			//shot->chargeMag = 3;
+			shot->velocityY = shot->arc * SHOT_MAGNIFICATION;
 		}
 
+		// 矢を可視化する
 		shot->visibleFlg = false;
 
 		if (shotFlg == false)
@@ -218,9 +238,12 @@ void Player::ShotProcess(Camera *camera, Anim *anim, Shot *shot, Effect *effect)
 
 		chargeCount = 0;
 
-		chargeLv0 = false;
-		chargeLv1 = false;
-		chargeLv2 = false;
+		for (int i = 0; i < 3; i++)
+		{
+			chargeLv[i] = false;
+		}
+
+
 
 		shotInterval = 0;
 
@@ -233,7 +256,7 @@ void Player::ShotProcess(Camera *camera, Anim *anim, Shot *shot, Effect *effect)
 // プレーヤーのアクション(移動関係)処理
 //-----------------------------------------------------//
 // プレーヤー右移動処理
-void Player::MoveRightX()
+void Player::MoveRightPlayer()
 {
 	if (rightMoveFlg && moveFlg && !chargeFlg)
 	{
@@ -241,7 +264,7 @@ void Player::MoveRightX()
 	}
 }
 // プレーヤー左移動処理
-void Player::MoveLeftX()
+void Player::MoveLeftPlayer()
 {
 	if (leftMoveFlg && moveFlg && !chargeFlg)
 	{
@@ -249,7 +272,7 @@ void Player::MoveLeftX()
 	}
 }
 // プレーヤーのジャンプ処理
-void Player::JumpAction()
+void Player::JumpPlayer()
 {
 	if (jumpFlg)
 	{
@@ -259,7 +282,7 @@ void Player::JumpAction()
 }
 
 // プレーヤーの重力処理
-void Player::Gravity()
+void Player::GravityProcess()
 {
 	// ジャンプ時以外は常時重力がかかり続ける
 	if (!jumpFlg)
@@ -347,7 +370,7 @@ void Player::Damage()
 // 当たり判定処理
 //----------------------------------------------------------------------//
 // プレーヤーのブロック上部当たり判定処理
-void Player::HitBlockTop(Map *map, Collision *coll, Camera *camera)
+void Player::CheckHitBlockTop(Map *map, Collision *coll, Camera *camera)
 {
 	// Collision内の上部当たり判定をジャッジする関数に、当たっているか否かのboolを返してもらう
 	hitTopFlg = coll->CheckHitTop(map, x, y, PLAYER_W - PLAYER_W / 2, PLAYER_H);
@@ -376,7 +399,7 @@ void Player::HitBlockTop(Map *map, Collision *coll, Camera *camera)
 }
 
 // プレーヤーのブロック底部当たり判定処理
-void Player::HitBlockUnder(Map *map, Camera *camera, Collision *coll)
+void Player::CheckHitBlockUnder(Map *map, Camera *camera, Collision *coll)
 {
 	hitUnderFlg = coll->CheckHitUnder(map, x, y, PLAYER_W, PLAYER_H);
 
@@ -387,7 +410,7 @@ void Player::HitBlockUnder(Map *map, Camera *camera, Collision *coll)
 }
 
 // プレーヤーのブロック左側当たり判定処理
-void Player::HitBlockLeft(Map *map, Camera *camera, Collision *coll)
+void Player::CheckHitBlockLeft(Map *map, Camera *camera, Collision *coll)
 {
 	hitLeftFlg = coll->CheckHitLeft(map, x, y, PLAYER_W, PLAYER_H);
 
@@ -399,7 +422,7 @@ void Player::HitBlockLeft(Map *map, Camera *camera, Collision *coll)
 }
 
 // プレーヤーのブロック右側当たり判定処理
-void Player::HitBlockRight(Map *map, Camera *camera, Collision *coll)
+void Player::CheckHitBlockRight(Map *map, Camera *camera, Collision *coll)
 {
 	hitRightFlg = coll->CheckHitRight(map, x, y, PLAYER_W, PLAYER_H);
 

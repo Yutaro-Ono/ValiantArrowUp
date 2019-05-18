@@ -21,8 +21,6 @@ void Shot::Init(Player *player)
 
 	damage = 1;
 
-	chargeMag = 1;
-
 	remain = SHOT_REMAIN;
 	visibleFlg = true;
 	shotFlg = false;

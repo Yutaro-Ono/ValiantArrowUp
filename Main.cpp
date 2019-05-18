@@ -130,11 +130,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				camera.MovePosCam(&player);
 
 				// プレーヤー関連処理
-				player.HitBlockLeft(&map, &camera, &coll);
-				player.HitBlockRight(&map, &camera, &coll);
-				player.HitBlockTop(&map, &coll, &camera);
-				player.HitBlockUnder(&map, &camera, &coll);
-				player.Gravity();
+				player.CheckHitBlockLeft(&map, &camera, &coll);
+				player.CheckHitBlockRight(&map, &camera, &coll);
+				player.CheckHitBlockTop(&map, &coll, &camera);
+				player.CheckHitBlockUnder(&map, &camera, &coll);
+				player.GravityProcess();
 
 				player.Control();
 
@@ -149,9 +149,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				}
 				collA.HitBoss(&player, &boss);
 				collA.HitBossLaser(&boss, &player);
-				player.MoveRightX();
-				player.MoveLeftX();
-				player.JumpAction();
+				player.MoveRightPlayer();
+				player.MoveLeftPlayer();
+				player.JumpPlayer();
 				player.Damage();
 
 				// エネミー関連処理

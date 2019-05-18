@@ -87,7 +87,7 @@ void Effect::ShotCharge1(Camera * camera, Player *player, Anim * anim)
 	//	}
 	//}
 
-	if (player->chargeLv1 && effTimer < 18)
+	if (player->chargeLv[1] && effTimer < 18)
 	{
 		effTimer++;
 		if (effTimer < 18)
@@ -115,7 +115,7 @@ void Effect::ShotCharge2(Camera *camera, Player *player, Anim *anim)
 	//	}
 	//}
 
-	if (player->chargeLv2 && effTimer < 60)
+	if (player->chargeLv[2] && effTimer < 60)
 	{
 		//effTimer++;
 		//effCounter = effTimer / 6;
